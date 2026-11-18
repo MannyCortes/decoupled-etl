@@ -62,7 +62,7 @@ def upload_file(file: UploadFile, aws_key: str) -> bool:
             logger.exception(f"Exception {e} raised on attempt. Retry: {retry_counter}")
             #grab e.response['Error']['Code'] == 'Whatever Error':
         except Exception as e:
-            raise 
+            raise ConnectionError("An unexcpected error has occured")
     raise ConnectionError("Failed to upload file")
     
 def redis_queue(file: UploadFile, aws_key: str) -> bool:
